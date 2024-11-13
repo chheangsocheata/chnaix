@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realistic Snake with Body Follows Cursor (Tailwind + JS)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen bg-gray-800 relative overflow-hidden">
+    <!-- Snake Head -->
+    <div
+      id="snake-head"
+      class="absolute bg-green-700 w-9 h-7 rounded-full"
+    ></div>
+    <div id="snake-body"></div>
+
+    <script>
+      const segmentSize = 36; // Size of each segment
+      const numSegments = 12; // Number of body segments
+      const followSpeed = 0.1; // Speed of following, between 0 and 1
+
+      const snakeHead = document.getElementById('snake-head');
+      const snakeBody = document.getElementById('snake-body');
+
+      // Create the body segments dynamically using Tailwind for styling
+      let segments = [];
+      for (let i = 0; i < numSegments; i++) {
+        const segment = document.createElement('div');
+        segment.classList.add(
+          'absolute',
+          'w-9',
+          'h-7',
+          'rounded-full',
+          'transition-transform',
+          'ease-in-out',
+          'duration-75'
+        );
+        // Alternate between two green shades for a realistic body pattern
+        if (i % 2 === 0) {
+          segment.classList.add('bg-green-600');
+        } else {
+          segment.classList.add('bg-green-500');
+        }
+        snakeBody.appendChild(segment);
+        segments.push(segment);
+      }
+
+      // Store past positions for smooth following
+      let positions = [];
+
+      // Update snake movement using requestAnimationFrame
+      let lastX = window.innerWidth / 2,
+        lastY = window.innerHeight / 2;
+      function moveSnake() {
+        positions.unshift({
+          x: lastX - segmentSize / 2,
+          y: lastY - segmentSize / 2,
+        });
+
+        // Remove excess positions
+        if (positions.length > numSegments + 1) {
+          positions.pop();
+        }
+
+        // Move the snake head
+        snakeHead.style.transform = `translate(${lastX - segmentSize / 2}px, ${
+          lastY - segmentSize / 2
+        }px)`;
+
+        // Move each body segment to follow the previous one
+        segments.forEach((segment, index) => {
+          if (positions[index + 1]) {
+            const { x, y } = positions[index + 1];
+            segment.style.transform = `translate(${x}px, ${y}px)`;
+          }
+        });
+
+        requestAnimationFrame(moveSnake); // Ensure smooth animation
+      }
+
+      // Track mouse movement and apply easing to make smoother transitions
+      document.addEventListener('mousemove', (event) => {
+        const targetX = event.clientX;
+        const targetY = event.clientY;
+
+        // Apply easing for smoother following (lerp function)
+        lastX += (targetX - lastX) * followSpeed;
+        lastY += (targetY - lastY) * followSpeed;
+      });
+
+      // Start the snake movement
+      requestAnimationFrame(moveSnake);
+    </script>
+  </body>
+</html>

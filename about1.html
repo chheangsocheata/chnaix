@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Cards on Scroll</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    id="background"
+    class="bg-fixed bg-cover bg-center transition-all duration-[2s] ease-in-out"
+    style="background-image: url('image/large-modern-house-2.jpeg')"
+  >
+    <div id="navbar"></div>
+    <script src="main.js"></script>
+    <div
+      class="bg-[rgba(0,0,0,0.5)] w-screen flex flex-col justify-center items-center"
+    >
+      <div
+        class="w-screen h-screen text-white text-center flex flex-col justify-center items-center"
+      >
+        <div
+          class="bg-[#fca311] py-5 w-screen h-fit flex flex-col justify-center items-center"
+        >
+          <h2 class="text-3xl lg:text-4xl font-semibold mb-5">We are</h2>
+          <p class="max-w-4xl text-xl">
+            We are a full-service web development agency dedicated to building
+            powerful online presences for businesses of all sizes. <br />
+            We are passionate about helping businesses succeed online through
+            innovative web solutions tailored to your unique goals.
+          </p>
+          <a
+            href="#"
+            class="mt-5 border border-white rounded-xl px-4 py-2 bg-white/10 hover:bg-white/20"
+            >contact us</a
+          >
+        </div>
+      </div>
+      <div
+        class="w-screen h-screen text-white text-center flex flex-col justify-center items-center"
+      >
+        <div
+          class="bg-[#fca311] py-5 w-screen h-fit flex flex-col justify-center items-center"
+        >
+          <h2 class="text-3xl lg:text-4xl font-semibold mb-5">Vision</h2>
+          <p class="max-w-4xl text-xl">
+            Our vision is to redefine the digital space by delivering
+            cutting-edge web solutions that elevate brands and businesses to new
+            heights. We strive to be at the forefront of innovation, creating
+            websites that are not only visually stunning but also
+            technologically advanced and user-focused. Our goal is to set new
+            standards in web development, empowering businesses to fully harness
+            the potential of the digital world and drive long-term success.
+          </p>
+          <a
+            href="#"
+            class="mt-5 border border-white rounded-xl px-4 py-2 bg-white/10 hover:bg-white/20"
+            >contact us</a
+          >
+        </div>
+      </div>
+      <div
+        class="w-screen h-screen text-white text-center flex flex-col justify-center items-center"
+      >
+        <div
+          class="bg-[#fca311] py-5 w-screen h-fit flex flex-col justify-center items-center"
+        >
+          <h2 class="text-3xl lg:text-4xl font-semibold mb-5">Mission</h2>
+          <p class="max-w-4xl text-xl">
+            "Our mission is to deliver innovative, cutting-edge web solutions
+            that are tailored to our clients' unique needs. We strive to create
+            seamless, user-friendly digital experiences by leveraging the latest
+            technologies, ensuring our clients stay ahead in a constantly
+            evolving digital landscape."
+          </p>
+          <a
+            href="#"
+            class="mt-5 border border-white rounded-xl px-4 py-2 bg-white/10 hover:bg-white/20"
+            >contact us</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Image URLs array
+      const images = [
+        'image/large-modern-house-2.jpeg',
+        'image/large-modern-house.jpeg',
+        'image/Interior2.jpeg',
+        'image/modern.jpeg',
+      ];
+
+      let currentImageIndex = 0;
+
+      // Function to change background image
+      function changeBackgroundImage() {
+        const backgroundElement = document.getElementById('background');
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        backgroundElement.style.backgroundImage = `url(${images[currentImageIndex]})`;
+      }
+
+      // Change image every 1 second (1000ms)
+      setInterval(changeBackgroundImage, 5000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body class="bg-white w-screen overflow-x-hidden">
+    <div id="navbar"></div>
+    <!-- hero section  -->
+    <!-- <section
+      class="flex items-center justify-center h-screen bg-gradient-to-r from-blue-400 to-purple-600"
+    >
+      <div class="text-center text-white px-4 max-w-5xl">
+        <h1 id="hero-title" class="text-4xl md:text-6xl font-bold mb-4">
+          We are a full-service web development agency
+        </h1>
+
+        <p id="hero-text" class="text-lg md:text-xl mb-6">
+          creating innovative digital solutions that help businesses thrive in
+          today's fast-paced world.
+        </p>
+        <a
+          id="hero-button"
+          href="#contact"
+          class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold"
+          >Get Started</a
+        >
+      </div>
+    </section> -->
+    <section class="flex items-center justify-center h-screen">
+      <div class="text-center text-black max-w-4xl px-2">
+        <h1
+          id="typing-effect"
+          class="text-4xl md:text-5xl lg:text-7xl font-bold mb-5 lg:mb-7 text-black border-gray-800 pr-2 animate-pulse inline-block"
+        ></h1>
+        <p
+          id="hero-description"
+          class="text-xl md:text-2xl lg:text-3xl mb-10 lg:mb-14 transform translate-y-20 opacity-0 transition-all duration-700 ease-out"
+        ></p>
+        <a
+          id="hero-button"
+          href="#contact"
+          class="text-xl border border-black text-[#fca311] px-6 py-3 rounded-full font-semibold transform translate-y-20 opacity-0 transition-all duration-700 ease-out hover:bg-gray-100"
+          >Get a Website</a
+        >
+      </div>
+    </section>
+
+    <script>
+      // Typing effect
+      const words = [
+        { text: 'We are a full-service ', color: 'text-black' },
+        { text: 'Web development ', color: 'text-[#fca311]' },
+        { text: 'agency', color: 'text-black' },
+      ];
+      const typingElement = document.getElementById('typing-effect');
+      let wordIndex = 0;
+      let charIndex = 0;
+
+      function typeLetter() {
+        if (wordIndex < words.length) {
+          const word = words[wordIndex];
+          const currentSpan =
+            typingElement.querySelector(`.word-${wordIndex}`) ||
+            createSpan(wordIndex, word.color);
+          if (charIndex < word.text.length) {
+            currentSpan.textContent += word.text[charIndex];
+            charIndex++;
+            setTimeout(typeLetter, 100); // Typing speed
+          } else {
+            wordIndex++;
+            charIndex = 0;
+            typeLetter();
+          }
+        } else {
+          typingElement.classList.remove('animate-pulse'); // Stop cursor blinking
+          riseElements(); // Trigger the rise effect for the other elements
+        }
+      }
+
+      function createSpan(index, color) {
+        const span = document.createElement('span');
+        span.className = `word-${index} ${color}`;
+        typingElement.appendChild(span);
+        return span;
+      }
+
+      function riseElements() {
+        const description = document.getElementById('hero-description');
+        const button = document.getElementById('hero-button');
+
+        description.textContent =
+          'We provide creative solutions that help your business grow.';
+        description.classList.remove('translate-y-20', 'opacity-0');
+        description.classList.add('translate-y-0', 'opacity-100');
+
+        button.classList.remove('translate-y-20', 'opacity-0');
+        button.classList.add('translate-y-0', 'opacity-100');
+      }
+
+      // Start typing effect on page load
+      window.addEventListener('load', typeLetter);
+    </script>
+    <!-- service section  -->
+    <section class="flex justify-center">
+      <div>
+        <h2
+          class="lg:mt-10 text-center text-4xl lg:text-5xl font-semibold mb-14"
+        >
+          Services
+        </h2>
+        <div
+          class="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-screen gap-7"
+        >
+          <div class="relative h-80 w-full rounded-md group">
+            <div>
+              <img
+                src="img/service/ui.jpg"
+                class="h-52 object-cover w-full rounded-t-md"
+              />
+            </div>
+            <div
+              class="text-center px-2 flex flex-col justify-center items-center bottom-0 absolute transition-all duration-1000 h-28 w-full rounded-b-md lg:group-hover:h-80 group-hover:rounded-md bg-[#fca311] text-white"
+            >
+              <h2 class="text-2xl font-semibold pb-3">UX/UI design</h2>
+              <p class="hidden lg:group-hover:block">
+                Create a site that is easy to use, intuitive, and provides value
+                to the user.
+              </p>
+            </div>
+          </div>
+          <div class="relative h-80 w-full rounded-md group">
+            <div>
+              <img
+                src="img/service/seo.svg"
+                class="h-52 object-cover w-full rounded-t-md"
+              />
+            </div>
+            <div
+              class="text-center px-2 flex flex-col justify-center items-center bottom-0 absolute transition-all duration-1000 h-28 w-full rounded-b-md lg:group-hover:h-80 group-hover:rounded-md bg-[#fca311] text-white"
+            >
+              <h2 class="text-2xl font-semibold pb-3">SEO Optimization</h2>
+              <p class="hidden lg:group-hover:block">
+                Increase organic traffic by improving search engine rankings and
+                making the website easier to find online.
+              </p>
+            </div>
+          </div>
+          <div class="relative h-80 w-full rounded-md group">
+            <div>
+              <img
+                src="img/service/domain&hosting.jpg"
+                class="h-52 object-cover w-full rounded-t-md"
+              />
+            </div>
+            <div
+              class="text-center px-2 flex flex-col justify-center items-center bottom-0 absolute transition-all duration-1000 h-28 w-full rounded-b-md lg:group-hover:h-80 group-hover:rounded-md bg-[#fca311] text-white"
+            >
+              <h2 class="text-2xl font-semibold pb-3">Domain & Hosting</h2>
+              <p class="hidden lg:group-hover:block">
+                Offering services for registering domain names nd providing
+                secure, reliable hosting
+              </p>
+            </div>
+          </div>
+          <div class="relative h-80 w-full rounded-md group">
+            <div>
+              <img
+                src="image/Colonial-House.jpeg"
+                class="h-52 object-cover w-full rounded-t-md"
+              />
+            </div>
+            <div
+              class="text-center px-2 flex flex-col justify-center items-center bottom-0 absolute transition-all duration-1000 h-28 w-full rounded-b-md lg:group-hover:h-80 group-hover:rounded-md bg-[#fca311] text-white"
+            >
+              <h2 class="text-2xl font-semibold pb-3">Web Development</h2>
+              <p class="hidden lg:group-hover:block">
+                Develop a fully functional, including both front-end and
+                back-end.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- why choose us section  -->
+    <section class="mt-20 lg:mt-48">
+      <h2 class="text-center text-4xl lg:text-5xl font-semibold mb-10">
+        Why choose us
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-14 gap-4">
+        <div class="py-5 lg:py-8">
+          <h2 class="text-4xl mb-5 font-semibold text-[#fca311]">1</h2>
+          <h3 class="text-2xl mb-2 font-semibold">Full-Service Agency</h3>
+          <p class="text-xl">
+            From design and development to digital marketing and SEO, we are a
+            full-service agency. This means we can handle every aspect of your
+            online presence, so you don't have to juggle multiple providers.
+          </p>
+        </div>
+
+        <div class="py-5 lg:py-8">
+          <h2 class="text-4xl mb-5 font-semibold text-[#fca311]">2</h2>
+          <h3 class="text-2xl mb-2 font-semibold">Team</h3>
+          <p class="text-xl">
+            Our developers, designers, and strategists are industry experts with
+            years of experience in delivering top-tier web solutions. You'll be
+            working with a team that understands the challenges and
+            opportunities in web development.
+          </p>
+        </div>
+        <div class="py-5 lg:py-8">
+          <h2 class="text-4xl mb-5 font-semibold text-[#fca311]">3</h2>
+          <h3 class="text-2xl mb-2 font-semibold">
+            SEO and Performance Optimization
+          </h3>
+          <p class="text-xl">
+            A great website is more than just beautiful. It needs to be
+            discoverable. We build websites with clean code, fast load times,
+            and optimized for search engines to help improve your online
+            visibility.
+          </p>
+        </div>
+        <div class="py-5 lg:py-8">
+          <h2 class="text-4xl mb-5 font-semibold text-[#fca311]">4</h2>
+          <h3 class="text-2xl mb-2 font-semibold">Cost-Effective Solutions</h3>
+          <p class="text-xl">
+            We offer premium services without the premium price tag. Our goal is
+            to deliver high-quality results within your budget, maximizing your
+            return on investment.
+          </p>
+        </div>
+
+        <div class="py-5 lg:py-8">
+          <h2 class="text-4xl mb-5 font-semibold text-[#fca311]">5</h2>
+          <h3 class="text-2xl mb-2 font-semibold">
+            Reliable Support and Maintenance
+          </h3>
+          <p class="text-xl">
+            Our services don't end after launch. We provide ongoing support and
+            maintenance to ensure your website runs smoothly, stays secure, and
+            continues to perform optimally over time.
+          </p>
+        </div>
+
+        <div class="py-5 lg:py-8">
+          <h2 class="text-4xl mb-5 font-semibold text-[#fca311]">6</h2>
+          <h3 class="text-2xl mb-2 font-semibold">Fast Turnaround Time</h3>
+          <p class="text-xl">
+            Time is money. We have streamlined processes and efficient workflows
+            that allow us to deliver high-quality websites in shorter time
+            frames without sacrificing quality, helping you get to market
+            faster.
+          </p>
+        </div>
+      </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+      // call navbar to each file
+      // Function to load the navbar
+      function loadNavbar() {
+        fetch('nav.html')
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById('navbar').innerHTML = data;
+            initNavbar(); // Re-initialize the navbar after it's loaded
+          });
+      }
+      // small navbar active and text effect
+      // Function to initialize the navbar (especially the mobile menu toggle )
+      function initNavbar() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuItems = mobileMenu.querySelectorAll('a');
+        let isOpen = false;
+
+        menuToggle?.addEventListener('click', () => {
+          if (!isOpen) {
+            // Open the menu with slide down effect
+            mobileMenu.classList.remove('max-h-0');
+            mobileMenu.classList.add('max-h-screen');
+
+            // Reveal each item with a delay
+            menuItems.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add('opacity-100', 'translate-y-0');
+                item.classList.remove('opacity-0', '-translate-y-4');
+              }, index * 300);
+            });
+            isOpen = true;
+          } else {
+            // Hide each item before closing the menu
+            menuItems.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add('opacity-0', '-translate-y-4');
+                item.classList.remove('opacity-100', 'translate-y-0');
+              }, index * 200);
+            });
+
+            // Slide up the menu after the text is hidden
+            setTimeout(() => {
+              mobileMenu.classList.remove('max-h-screen');
+              mobileMenu.classList.add('max-h-0');
+            }, menuItems.length * 200);
+            isOpen = false;
+          }
+        });
+      }
+
+      // Footer for all file
+      // Load the Footer when the page loads
+      window.addEventListener('load', loadNavbar, loadFooter);
+
+      function loadFooter() {
+        fetch('footer.html')
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById('footer').innerHTML = data;
+            initFooter(); // Re-initialize the navbar after it's loaded
+          });
+      }
+      window.addEventListener('load', loadFooter);
+    </script>
+  </body>
+</html>

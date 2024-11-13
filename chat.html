@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat</title>
+    <script>
+      // Function to stop shaking and toggle the visibility of #chat-by on first click
+      function handleClick() {
+        const chatBox = document.getElementById('chat-by');
+        const img = document.getElementById('shake-img');
+
+        clearInterval(shakeInterval); // Stop the shaking interval
+        img.classList.remove('translate-x-1', '-translate-y-1'); // Reset position
+        chatBox.classList.toggle('hidden'); // Show or hide the chat box
+
+        // Remove this click handler after the first click
+        img.onclick = toggleChatBox; // Enable just chat box toggle on future clicks
+      }
+
+      // Function to toggle the visibility of #chat-by after the first click
+      function toggleChatBox() {
+        const chatBox = document.getElementById('chat-by');
+        chatBox.classList.toggle('hidden');
+      }
+
+      // Function to add shake effect using Tailwind's translate utilities
+      function startShake() {
+        const img = document.getElementById('shake-img');
+        let shake = true;
+
+        // Start the interval for shaking the image
+        shakeInterval = setInterval(() => {
+          if (shake) {
+            img.classList.add('translate-x-1', '-translate-y-1'); // Shake right-up
+          } else {
+            img.classList.remove('translate-x-1', '-translate-y-1'); // Back to original position
+          }
+          shake = !shake; // Toggle the shake state
+        }, 150); // Change every 150ms
+      }
+
+      let shakeInterval; // Declare a variable to hold the interval
+      window.onload = startShake; // Start shaking when the page loads
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="fixed bottom-3 right-3 lg:bottom-8 lg:right-8">
+      <!-- Chat Box starts hidden -->
+      <div id="chat-by" class="w-32 h-32 bg-red-300 rounded-xl p-3 hidden">
+        <div class="flex gap-1">
+          <div><img src="img/wechat.svg" alt="" class="w-8" /></div>
+          <p>wechat</p>
+        </div>
+        <div class="flex gap-1">
+          <div><img src="img/wechat.svg" alt="" class="w-8" /></div>
+          <p>wechat</p>
+        </div>
+      </div>
+
+      <!-- Chat Icon -->
+      <img
+        id="shake-img"
+        src="img/chat.png"
+        class="w-20 lg:w-28 cursor-pointer transition-transform duration-75"
+        onclick="handleClick()"
+        alt="Chat Icon"
+      />
+    </div>
+
+    <div class="h-screen bg-red-100"></div>
+    <div class="h-screen bg-blue-100"></div>
+  </body>
+</html>

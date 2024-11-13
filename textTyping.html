@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Effect</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <section class="flex items-center justify-center h-screen">
+      <div class="text-center text-black max-w-4xl px-2">
+        <h1
+          id="typing-effect"
+          class="text-4xl md:text-5xl lg:text-7xl font-bold mb-5 lg:mb-7 text-black border-gray-800 pr-2 animate-pulse inline-block"
+        ></h1>
+        <p
+          id="hero-description"
+          class="text-xl md:text-2xl lg:text-3xl mb-10 lg:mb-14 transform translate-y-20 opacity-0 transition-all duration-700 ease-out"
+        ></p>
+        <a
+          id="hero-button"
+          href="#contact"
+          class="text-xl border border-black text-[#fca311] px-6 py-3 rounded-full font-semibold transform translate-y-20 opacity-0 transition-all duration-700 ease-out hover:bg-gray-100"
+          >Get Website</a
+        >
+      </div>
+    </section>
+
+    <script>
+      // Typing effect
+      const words = [
+        { text: 'We are a full-service ', color: 'text-black' },
+        { text: 'Web development ', color: 'text-[#fca311]' },
+        { text: 'agency', color: 'text-black' },
+      ];
+      const typingElement = document.getElementById('typing-effect');
+      let wordIndex = 0;
+      let charIndex = 0;
+
+      function typeLetter() {
+        if (wordIndex < words.length) {
+          const word = words[wordIndex];
+          const currentSpan =
+            typingElement.querySelector(`.word-${wordIndex}`) ||
+            createSpan(wordIndex, word.color);
+          if (charIndex < word.text.length) {
+            currentSpan.textContent += word.text[charIndex];
+            charIndex++;
+            setTimeout(typeLetter, 100); // Typing speed
+          } else {
+            wordIndex++;
+            charIndex = 0;
+            typeLetter();
+          }
+        } else {
+          typingElement.classList.remove('animate-pulse'); // Stop cursor blinking
+          riseElements(); // Trigger the rise effect for the other elements
+        }
+      }
+
+      function createSpan(index, color) {
+        const span = document.createElement('span');
+        span.className = `word-${index} ${color}`;
+        typingElement.appendChild(span);
+        return span;
+      }
+
+      function riseElements() {
+        const description = document.getElementById('hero-description');
+        const button = document.getElementById('hero-button');
+
+        description.textContent =
+          'We provide creative solutions that help your business grow.';
+        description.classList.remove('translate-y-20', 'opacity-0');
+        description.classList.add('translate-y-0', 'opacity-100');
+
+        button.classList.remove('translate-y-20', 'opacity-0');
+        button.classList.add('translate-y-0', 'opacity-100');
+      }
+
+      // Start typing effect on page load
+      window.addEventListener('load', typeLetter);
+    </script>
+  </body>
+</html>

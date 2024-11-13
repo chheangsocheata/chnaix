@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce Banner</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        height: 300vh; /* Make the body tall to allow scrolling */
+        margin: 0;
+      }
+      .banner {
+        background-image: url('https://via.placeholder.com/1600x600/1a202c/ffffff?text=Banner+1');
+        background-size: cover;
+        background-position: center;
+        position: sticky; /* Keep the banner fixed while scrolling */
+        top: 0;
+        height: 100vh; /* Full viewport height */
+        transition: background-image 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for background and opacity */
+      }
+      .dot {
+        height: 12px;
+        width: 12px;
+        margin: 4px 0; /* Vertical spacing between dots */
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+      }
+      .active {
+        background-color: #717171;
+      }
+      .fade-out {
+        opacity: 0; /* Fade out effect */
+      }
+      .fade-in {
+        opacity: 1; /* Fade in effect */
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="banner"
+      class="banner flex items-center justify-center text-center text-white relative"
+    >
+      <div class="overlay absolute inset-0 bg-black opacity-50"></div>
+      <div class="relative z-10">
+        <h1 id="banner-title" class="text-5xl font-bold mb-4">
+          Welcome to Our Store
+        </h1>
+        <p id="banner-tagline" class="text-xl mb-6">
+          Discover amazing products at unbeatable prices!
+        </p>
+        <a
+          href="#shop"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+          >Shop Now</a
+        >
+      </div>
+
+      <!-- Dots positioned on the right side -->
+      <div
+        class="absolute top-1/2 right-4 transform -translate-y-1/2 flex flex-col"
+      >
+        <div class="dot active" onclick="changeBanner(0)"></div>
+        <div class="dot" onclick="changeBanner(1)"></div>
+        <div class="dot" onclick="changeBanner(2)"></div>
+      </div>
+    </div>
+
+    <script>
+      const banners = [
+        {
+          image:
+            'https://via.placeholder.com/1600x600/1a202c/ffffff?text=Banner+1',
+          title: 'Welcome to Our Store',
+          tagline: 'Discover amazing products at unbeatable prices!',
+        },
+        {
+          image:
+            'https://via.placeholder.com/1600x600/2d3748/ffffff?text=Banner+2',
+          title: 'New Arrivals Just for You',
+          tagline: 'Check out our latest collection and find your favorites!',
+        },
+        {
+          image:
+            'https://via.placeholder.com/1600x600/4a5568/ffffff?text=Banner+3',
+          title: 'Exclusive Offers Await',
+          tagline: 'Grab the best deals before they are gone!',
+        },
+      ];
+
+      let currentIndex = 0;
+
+      function changeBanner(index) {
+        // Fade out current content
+        const bannerElement = document.getElementById('banner');
+        bannerElement.classList.add('fade-out');
+
+        setTimeout(() => {
+          // Change banner details after fade out
+          currentIndex = index;
+          const currentBanner = banners[currentIndex];
+          bannerElement.style.backgroundImage = `url(${currentBanner.image})`;
+          document.getElementById('banner-title').innerText =
+            currentBanner.title;
+          document.getElementById('banner-tagline').innerText =
+            currentBanner.tagline;
+
+          // Update dot indicators
+          const dots = document.querySelectorAll('.dot');
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+          });
+
+          // Fade in new content
+          bannerElement.classList.remove('fade-out');
+          bannerElement.classList.add('fade-in');
+        }, 500); // Wait for fade out duration before changing content
+      }
+
+      // Initialize the first banner
+      changeBanner(0);
+
+      // Scroll event to change banner based on scroll position
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY; // Get the current scroll position
+        const viewportHeight = window.innerHeight; // Get the height of the viewport
+
+        // Determine the index of the current banner based on scroll position
+        const index = Math.floor(scrollY / viewportHeight);
+        if (index !== currentIndex && index < banners.length) {
+          changeBanner(index);
+        }
+      });
+    </script>
+  </body>
+</html>

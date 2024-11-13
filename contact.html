@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <section class="flex flex-col items-center">
+      <div class="max-w-screen-2xl">
+        <!-- first intro ( first h-screen)  -->
+        <div
+          class="text-white lg:grid lg:grid-cols-2 justify-center xl:h-screen bg-[#fca311] pt-7 mt-14 lg:mt-0"
+        >
+          <div
+            class="bg-slate-400 px-5 lg:px-10 lg:max-w-2xl flex flex-col justify-center text-center lg:text-left"
+          >
+            <h1
+              id="text-intro1"
+              class="text-4xl sm:text-5xl font-semibold mb-4 lg:mb-7 opacity-0 transform translate-y-10 transition duration-1000"
+            >
+              Get the help you need
+            </h1>
+            <p
+              id="text-intro2"
+              class="text-lg sm:text-xl opacity-0 transform translate-y-10 transition duration-1000"
+            >
+              Give as a few details and we'll offer the best solution. <br />
+              Contact by Phone, Telegram, Wechat, Email.
+            </p>
+          </div>
+          <!-- image  -->
+          <img id="animatedImg" src="img/call_center.png" />
+          <div class="hidden xl:block text-center lg:col-span-2">
+            <a
+              href="#down"
+              id="down"
+              onclick="scrollToDown(event)"
+              class="opacity-0 transform transition duration-1000"
+              >Scroll down</a
+            >
+          </div>
+        </div>
+
+        <!-- second contact  -->
+        <div id="down" class="flex justify-center mt-20">
+          <div>
+            <h3 class="mb-8 xl:mb-10 text-3xl font-semibold text-center">
+              Contact
+            </h3>
+            <div
+              class="flex flex-col gap-2 border-2 border-black px-10 lg:px-24 py-10 w-fit h-fit"
+            >
+              <div class="flex items-center gap-3">
+                <img src="img/call.svg" class="w-12 h-12" />
+                <div>
+                  <p class="text-xl font-medium">Call</p>
+                  <a href="tel:010 260 823">010 260 823</a>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="img/telegram.svg" class="w-12 h-12" />
+                <div>
+                  <p class="text-xl font-medium">Telegram</p>
+                  <a href="https://t.me/Chheang_Socheata" target="_blank"
+                    >010 260 823</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="img/wechat.svg" class="w-12 h-12" />
+                <div>
+                  <p class="text-xl font-medium">Wechat</p>
+                  <a href="#">010 260 823</a>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="img/email.svg" class="w-12 h-12" />
+                <div>
+                  <p class="text-xl font-medium">Email</p>
+                  <a href="mailto:cheata@gamil.com">cheata@gamil.com</a>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="img/address.svg" class="w-12 h-12" />
+                <div>
+                  <p class="text-xl font-medium">Address</p>
+                  <a href="#">Kratie province, Cambodia</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="footer"></div>
+    <script src="main.js"></script>
+    <script>
+      // text intro1
+      // text intro2
+      // scroll down
+      window.onload = function () {
+        // Select the text elements
+        const intro1 = document.getElementById('text-intro1');
+        const intro2 = document.getElementById('text-intro2');
+        const down = document.getElementById('down');
+
+        // Apply the rise effect after a delay for intro1
+        setTimeout(() => {
+          intro1.classList.remove('opacity-0', 'translate-y-10');
+        }, 100); // Delay for intro1 (500ms)
+
+        // Apply the rise effect after a delay for intro2
+        setTimeout(() => {
+          intro2.classList.remove('opacity-0', 'translate-y-10');
+        }, 1000); // Delay for intro2 (1500ms, appears after intro1)
+        setTimeout(() => {
+          down.classList.remove('opacity-0');
+        }, 2000);
+      };
+
+      //   img inimation
+      //   inimation for img
+      const img = document.getElementById('animatedImg');
+      let direction = 1;
+      let position = 0;
+      let speed = 0.23; // Slower speed
+
+      function animate() {
+        position += direction * speed; // Slow down the movement
+        img.style.transform = `translateY(${position}px)`;
+
+        if (position >= 20 || position <= 0) {
+          direction *= -1;
+        }
+
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // Scroll down smoothly
+      // when click Scroll down it will smoothly
+      function scrollToDown(event) {
+        event.preventDefault();
+        document.getElementById('down').scrollIntoView({
+          behavior: 'smooth',
+        });
+      }
+    </script>
+  </body>
+</html>

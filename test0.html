@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game with Wrap Around</title>
+    <script defer src="script.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-800 flex flex-col items-center justify-center h-screen">
+    <h1 class="text-white text-2xl mb-4">Snake Game</h1>
+    <div id="game" class="bg-gray-900 w-96 h-96 relative"></div>
+    <div class="text-white text-lg mt-4">Score: <span id="score">0</span></div>
+    <script>
+      const game = document.getElementById('game');
+      const scoreElement = document.getElementById('score');
+      const gridSize = 24;
+      const cellSize = 16;
+      let snake = [{ x: 10, y: 10 }];
+      let food = { x: 15, y: 15 };
+      let direction = { x: 1, y: 0 };
+      let score = 0;
+      let speed = 200;
+      let intervalId;
+
+      function drawGrid() {
+        game.innerHTML = '';
+        snake.forEach((segment) =>
+          drawCell(segment.x, segment.y, 'bg-green-500')
+        );
+        drawCell(food.x, food.y, 'bg-red-500');
+      }
+
+      function drawCell(x, y, color) {
+        const cell = document.createElement('div');
+        cell.style.width = `${cellSize}px`;
+        cell.style.height = `${cellSize}px`;
+        cell.style.left = `${x * cellSize}px`;
+        cell.style.top = `${y * cellSize}px`;
+        cell.classList.add('absolute', color);
+        game.appendChild(cell);
+      }
+
+      function moveSnake() {
+        const head = { ...snake[0] };
+        head.x += direction.x;
+        head.y += direction.y;
+
+        // Wrap-around logic
+        if (head.x < 0) head.x = gridSize - 1;
+        if (head.x >= gridSize) head.x = 0;
+        if (head.y < 0) head.y = gridSize - 1;
+        if (head.y >= gridSize) head.y = 0;
+
+        if (head.x === food.x && head.y === food.y) {
+          snake.unshift(food); // Grow the snake when eating food
+          score += 10;
+          updateScore();
+          speedUp();
+          generateFood();
+        } else {
+          snake.unshift(head);
+          snake.pop();
+        }
+
+        if (checkSelfCollision()) {
+          clearInterval(intervalId);
+          alert('Game Over. Final Score: ' + score);
+        }
+
+        drawGrid();
+      }
+
+      function changeDirection(event) {
+        switch (event.key) {
+          case 'ArrowUp':
+            if (direction.y === 0) direction = { x: 0, y: -1 };
+            break;
+          case 'ArrowDown':
+            if (direction.y === 0) direction = { x: 0, y: 1 };
+            break;
+          case 'ArrowLeft':
+            if (direction.x === 0) direction = { x: -1, y: 0 };
+            break;
+          case 'ArrowRight':
+            if (direction.x === 0) direction = { x: 1, y: 0 };
+            break;
+        }
+      }
+
+      function generateFood() {
+        food = {
+          x: Math.floor(Math.random() * gridSize),
+          y: Math.floor(Math.random() * gridSize),
+        };
+      }
+
+      function checkSelfCollision() {
+        const head = snake[0];
+        return snake
+          .slice(1)
+          .some((segment) => segment.x === head.x && segment.y === head.y);
+      }
+
+      function updateScore() {
+        scoreElement.textContent = score;
+      }
+
+      function speedUp() {
+        clearInterval(intervalId);
+        speed = Math.max(50, speed - 10); // Speed up the game by decreasing the interval
+        intervalId = setInterval(moveSnake, speed);
+      }
+
+      document.addEventListener('keydown', changeDirection);
+
+      // Start the game
+      intervalId = setInterval(moveSnake, speed);
+      drawGrid();
+    </script>
+  </body>
+</html>

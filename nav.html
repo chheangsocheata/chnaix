@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav id="navbar" class="bg-black py-4 px-5 lg:px-7 fixed top-0 w-full z-10">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="./index.html" class="lg:ml-20 text-white text-3xl font-bold"
+          >Chnai<span class="text-[#fca311]">X</span></a
+        >
+        <button id="menu-toggle" class="text-white md:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+        <!-- Menu for larger screens -->
+        <div id="menu" class="hidden md:flex space-x-6">
+          <a href="./index.html" class="text-white">Home</a>
+          <a href="./service.html" class="text-white">Services</a>
+          <a href="./blog.html" class="text-white">Blogs</a>
+          <a href="./about.html" class="text-white">About</a>
+          <a href="./contact.html" class="text-white">Contact</a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="overflow-hidden max-h-0 md:hidden flex flex-col text-center bg-gray-800 text-white transition-all duration-700"
+      >
+        <a
+          href="./index.html"
+          class="block py-2 px-4 opacity-0 transform -translate-y-4 transition-all duration-700"
+          >Home</a
+        >
+        <a
+          href="./service.html"
+          class="block py-2 px-4 opacity-0 transform -translate-y-4 transition-all duration-700"
+          >Services</a
+        >
+        <a
+          href="./blog.html"
+          class="block py-2 px-4 opacity-0 transform -translate-y-4 transition-all duration-700"
+          >Blogs</a
+        >
+        <a
+          href="./about.html"
+          class="block py-2 px-4 opacity-0 transform -translate-y-4 transition-all duration-700"
+          >About</a
+        >
+        <a
+          href="./contact.html"
+          class="block py-2 px-4 opacity-0 transform -translate-y-4 transition-all duration-700"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- JavaScript for the sliding effect and text animation -->
+    <!-- <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuItems = mobileMenu.querySelectorAll('a');
+      let isOpen = false;
+
+      menuToggle.addEventListener('click', () => {
+        if (!isOpen) {
+          // Open the menu with slide down effect by adjusting max-height
+          mobileMenu.classList.remove('max-h-0');
+          mobileMenu.classList.add('max-h-screen');
+
+          // Reveal each item with a delay
+          menuItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('opacity-100', 'translate-y-0');
+              item.classList.remove('opacity-0', '-translate-y-4');
+            }, index * 300); // Slower delay between items
+          });
+          isOpen = true;
+        } else {
+          // Hide each item with a delay before closing the menu
+          menuItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('opacity-0', '-translate-y-4');
+              item.classList.remove('opacity-100', 'translate-y-0');
+            }, index * 200); // Slower delay between items
+          });
+
+          // Slide up the menu after the text is hidden
+          setTimeout(() => {
+            mobileMenu.classList.remove('max-h-screen');
+            mobileMenu.classList.add('max-h-0');
+          }, menuItems.length * 200); // Adjust delay before collapsing the menu
+          isOpen = false;
+        }
+      });
+    </script> -->
+  </body>
+</html>

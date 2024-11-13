@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Advanced</title>
+    <!-- Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Add some custom styles for smooth scrolling animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <!-- About Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-4xl font-extrabold mb-6 text-blue-600">Our Mission</h2>
+        <p class="text-lg mb-8 fade-in">
+          Our mission is to deliver unparalleled customer service, innovative
+          products, and a commitment to sustainability that sets us apart.
+          Founded in 2010, we have grown from a small team to a global company
+          serving thousands of satisfied customers.
+        </p>
+        <a
+          href="#team"
+          class="inline-block bg-blue-500 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+          >Meet the Team</a
+        >
+      </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div class="max-w-5xl mx-auto text-center">
+        <h3 class="text-3xl font-semibold mb-10">Our Core Values</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 fade-in">
+          <div class="bg-white shadow-md rounded-lg p-6">
+            <h4 class="text-2xl font-bold mb-4">Integrity</h4>
+            <p class="text-gray-600">
+              We believe in transparency and honesty in everything we do.
+            </p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-6">
+            <h4 class="text-2xl font-bold mb-4">Innovation</h4>
+            <p class="text-gray-600">
+              We strive to bring the most innovative solutions to our customers.
+            </p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-6">
+            <h4 class="text-2xl font-bold mb-4">Sustainability</h4>
+            <p class="text-gray-600">
+              We are committed to reducing our environmental footprint.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-5xl mx-auto text-center">
+        <h3 class="text-3xl font-semibold mb-10">Meet the Team</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <!-- Team Member 1 -->
+          <div class="bg-gray-100 shadow-lg rounded-lg p-6 fade-in">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member"
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h4 class="text-xl font-bold">John Doe</h4>
+            <p class="text-gray-600">CEO & Founder</p>
+            <p class="text-sm mt-2">
+              John is the visionary behind our company, with 15 years of
+              experience in the industry.
+            </p>
+          </div>
+          <!-- Team Member 2 -->
+          <div class="bg-gray-100 shadow-lg rounded-lg p-6 fade-in">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member"
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h4 class="text-xl font-bold">Jane Smith</h4>
+            <p class="text-gray-600">Chief Marketing Officer</p>
+            <p class="text-sm mt-2">
+              Jane leads our marketing strategy with a passion for connecting
+              with customers.
+            </p>
+          </div>
+          <!-- Team Member 3 -->
+          <div class="bg-gray-100 shadow-lg rounded-lg p-6 fade-in">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member"
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h4 class="text-xl font-bold">Mike Johnson</h4>
+            <p class="text-gray-600">Head of Development</p>
+            <p class="text-sm mt-2">
+              Mike ensures our products are always at the cutting edge of
+              technology.
+            </p>
+          </div>
+          <!-- Team Member 4 -->
+          <div class="bg-gray-100 shadow-lg rounded-lg p-6 fade-in">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member"
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h4 class="text-xl font-bold">Emily Davis</h4>
+            <p class="text-gray-600">Lead Designer</p>
+            <p class="text-sm mt-2">
+              Emily's creative genius brings our brand's aesthetic to life.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-blue-500 text-white">
+      <div class="max-w-5xl mx-auto text-center">
+        <h3 class="text-3xl font-semibold mb-10">What Our Clients Say</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div class="bg-blue-600 shadow-lg rounded-lg p-6">
+            <p class="italic">
+              "This company provided excellent service and exceeded our
+              expectations."
+            </p>
+            <h4 class="text-xl font-bold mt-4">- Sarah Williams</h4>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="bg-blue-600 shadow-lg rounded-lg p-6">
+            <p class="italic">
+              "Their commitment to innovation and sustainability is inspiring."
+            </p>
+            <h4 class="text-xl font-bold mt-4">- James Brown</h4>
+          </div>
+          <!-- Testimonial 3 -->
+          <div class="bg-blue-600 shadow-lg rounded-lg p-6">
+            <p class="italic">
+              "The team is professional, dedicated, and always delivers on
+              time."
+            </p>
+            <h4 class="text-xl font-bold mt-4">- Lisa White</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 py-4 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto text-center text-gray-600">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for animations -->
+    <script>
+      document.addEventListener('scroll', function () {
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach((el) => {
+          const position = el.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          if (position < screenPosition) {
+            el.classList.add('visible');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

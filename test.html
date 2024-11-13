@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Cards on Scroll</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .animate-appear {
+        opacity: 0; /* Start hidden */
+        transform: scale(0.5);
+        transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+      }
+
+      .appear {
+        animation: appear 0.9s forwards; /* Trigger the appear animation */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mt-20 flex flex-col justify-center items-center gap-24">
+      <div class="block w-20 h-32 bg-slate-700 animate-appear"></div>
+      <div class="block w-14 h-14 bg-zinc-500 animate-appear"></div>
+      <div class="block w-40 h-40 bg-red-200 animate-appear"></div>
+      <div class="block w-60 h-60 bg-orange-600 animate-appear"></div>
+      <div class="block w-14 h-14 bg-slate-500 animate-appear"></div>
+      <div class="block w-32 h-32 bg-orange-500 animate-appear"></div>
+      <div class="block w-14 h-14 bg-lime-300 animate-appear"></div>
+      <div class="block w-14 h-14 bg-blue-400 animate-appear"></div>
+    </div>
+    <div id="footer"></div>
+    <script src="main.js"></script>
+    <script>
+      // Create an intersection observer to observe when elements come into view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // When the element is in view, add the 'appear' class to trigger the animation
+            entry.target.classList.add('appear');
+          }
+        });
+      });
+
+      // Select all elements with the 'animate-appear' class
+      const blocks = document.querySelectorAll('.animate-appear');
+
+      // Observe each block
+      blocks.forEach((block) => {
+        observer.observe(block);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
+
+    <section class="flex flex-col items-center w-full mt-28">
+      <!-- text intro with rise effect -->
+      <div class="text-center w-full">
+        <h2
+          id="intro-title"
+          class="text-4xl sm:text-5xl font-semibold mb-4 lg:mb-6 opacity-0 transform translate-y-10 transition duration-1000"
+        >
+          This Blog
+        </h2>
+        <p
+          id="intro-text"
+          class="text-xl mb-12 lg:mb-20 opacity-0 transform translate-y-10 transition duration-1000 delay-100"
+        >
+          Knowledge makes you better.
+        </p>
+      </div>
+
+      <!-- grid card -->
+      <div
+        id="card-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full px-5"
+      >
+        <!-- Cards will be dynamically inserted here -->
+      </div>
+    </section>
+    <div id="footer"></div>
+    <script src="main.js"></script>
+
+    <script>
+      // Data for the cards
+      const cardsData = [
+        {
+          link: '#',
+          imgSrc: 'image/large-modern-house.jpeg',
+          description:
+            'Modern architecture with a sleek design. lor cat car dog ice-cream',
+          date: '23 June 2024',
+          category: '#Tech',
+        },
+        {
+          link: '#',
+          imgSrc: 'image/Colonial-House.jpeg',
+          description: 'Small house with great aesthetic appeal.',
+          date: '15 July 2024',
+          category: '#Lifestyle',
+        },
+        {
+          link: '#',
+          imgSrc: 'image/Mansion.jpeg',
+          description:
+            'Beach house with amazing ocean views.Modern architecture with a sleek design.',
+          date: '01 August 2024',
+          category: '#Travel',
+        },
+        {
+          link: '#',
+          imgSrc: 'image/large-modern-house.jpeg',
+          description:
+            'Modern architecture with a sleek design. lor cat car dog ice-cream',
+          date: '23 June 2024',
+          category: '#Tech',
+        },
+        {
+          link: '#',
+          imgSrc: 'image/Colonial-House.jpeg',
+          description: 'Small house with great aesthetic appeal.',
+          date: '15 July 2024',
+          category: '#Lifestyle',
+        },
+        {
+          link: '#',
+          imgSrc: 'image/Mansion.jpeg',
+          description:
+            'Beach house with amazing ocean views.Modern architecture with a sleek design.',
+          date: '01 August 2024',
+          category: '#Travel',
+        },
+        {
+          link: '#',
+          imgSrc: 'image/Mansion.jpeg',
+          description:
+            'Beach house with amazing ocean views.Modern architecture with a sleek design.',
+          date: '01 August 2024',
+          category: '#Travel',
+        },
+        {
+          link: '#',
+          imgSrc: 'image/large-modern-house.jpeg',
+          description:
+            'Modern architecture with a sleek design. lor cat car dog ice-cream',
+          date: '23 June 2024',
+          category: '#Tech',
+        },
+      ];
+
+      // Function to create a card element
+      function createCard(card, index) {
+        return `
+          <a href=${
+            card.link
+          }" class="group opacity-0 transform translate-y-10 transition duration-1000" style="transition-delay: ${
+          index * 200
+        }ms;">
+            <div class="w-full h-full flex flex-col rounded-md border border-gray-400 group-hover:border-yellow-400">
+              <div class="flex-shrink-0 rounded-md px-4 pt-4 bg-white group-hover:p-0 transition-all duration-1000">
+                <img src="${
+                  card.imgSrc
+                }" class="rounded-md group-hover:rounded-b-none" />
+              </div>
+              <p class="text-xl font-medium my-3 px-4">${card.description}</p>
+              <div class="text-gray-500 flex justify-between px-4 pb-3 items-end mt-auto">
+                <p class="text-sm">${card.date}</p>
+                <p>${card.category}</p>
+              </div>
+            </div>
+          </a>
+        `;
+      }
+
+      // Inserting cards into the container
+      const cardContainer = document.getElementById('card-container');
+      cardsData.forEach((card, index) => {
+        cardContainer.innerHTML += createCard(card, index);
+      });
+
+      // Function to trigger the rise effect on page load
+      window.addEventListener('load', () => {
+        const introTitle = document.getElementById('intro-title');
+        const introText = document.getElementById('intro-text');
+
+        // Show text intro
+        introTitle.classList.remove('opacity-0', 'translate-y-10');
+        introTitle.classList.add('opacity-100', 'translate-y-0');
+
+        introText.classList.remove('opacity-0', 'translate-y-10');
+        introText.classList.add('opacity-100', 'translate-y-0');
+
+        // Show cards one by one
+        const cardElements = document.querySelectorAll('#card-container a');
+        cardElements.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.remove('opacity-0', 'translate-y-10');
+            card.classList.add('opacity-100', 'translate-y-0');
+          }, index * 200); // Staggering each card with a delay of 200ms
+        });
+      });
+    </script>
+  </body>
+</html>

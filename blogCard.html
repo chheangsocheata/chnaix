@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <section class="flex flex-col items-center w-full">
+      <!-- text intro  -->
+      <div class="bg-slate-300 text-center">
+        <h2 class="text-4xl sm:text-5xl font-semibold mb-4 lg:mb-7">
+          this blog
+        </h2>
+        <p class="text-lg mb-12 lg:mb-32">knowloge is make you good.</p>
+      </div>
+      <!-- grid card  -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full my-10 px-5"
+      >
+        <a class="group" href="#">
+          <div
+            id="card"
+            class="w-full h-fit rounded-md border border-black group-hover:border-red-500"
+          >
+            <div
+              class="rounded-md px-4 pt-4 bg-white group-hover:p-0 transition-all duration-1000"
+            >
+              <img
+                src="image/large-modern-house.jpeg"
+                class="rounded-md group-hover:rounded-b-none"
+              />
+            </div>
+
+            <p class="text-xl font-medium my-3 px-4">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+              dicta!
+            </p>
+            <div class="text-gray-500 flex justify-between px-4 pb-3">
+              <p class="">23 june 2024</p>
+              <p>#Tech</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </body>
+</html>
